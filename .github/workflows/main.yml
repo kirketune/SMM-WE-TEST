@@ -1,6 +1,6 @@
-name: Compilar iOS (.ipa)
+name: Compilar iOS desde YYZ
 on:
-  workflow_dispatch: # Esto te permite activar la compilación manualmente con un botón
+  workflow_dispatch: # Activación manual por botón
 
 jobs:
   build-ios:
@@ -12,16 +12,15 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-size: 18
+        node-version: 18
 
     - name: Install Stitch (GameMaker CLI tool)
       run: npm install -g @bscotch/stitch
 
     - name: Run GameMaker Compiler for iOS
       run: |
-        # Este comando le dice al Mac de GitHub que compile el proyecto para iOS
-        # Nota: Generará el proyecto Xcode listo para compilar
-        stitch build --platform ios --project .
+        # Cambia "mi_juego.yyz" por el nombre exacto de tu archivo si le pusiste otro
+        stitch build --platform ios --project ./mi_juego.yyz
 
     - name: Upload Xcode Project Artifact
       uses: actions/upload-artifact@v4
